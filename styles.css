@@ -1,0 +1,364 @@
+/* ========== CSS Variables & Base ========== */
+:root {
+  --bg: #0b0d10;
+  --panel: #11141a;
+  --text: #e6e6e6;
+  --muted: #a3a3a3;
+  --primary: #5b8cff;
+  --primary-700: #3e6bf3;
+  --accent: #22d3ee;
+  --ring: rgba(91, 140, 255, 0.35);
+  --border: #1f2430;
+  --radius: 16px;
+  --maxw: 1100px;
+}
+:custom * {
+  --name: #342567;
+}
+html,
+body {
+  height: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  width: min(100% - 2rem, var(--maxw));
+  margin-inline: auto;
+}
+.section {
+  padding: 6rem 0;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+}
+p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  color: #000;
+  border-radius: 6px;
+}
+
+/* ========== Header & Nav ========== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 13, 16, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+}
+.logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+}
+.logo .dot {
+  color: var(--accent);
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-link {
+  display: inline-block;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid transparent;
+}
+.nav-link:hover {
+  background: var(--panel);
+  border-color: var(--border);
+}
+.nav-link.active {
+  background: color-mix(in oklab, var(--primary) 25%, transparent);
+  border-color: var(--ring);
+}
+
+/* Mobile toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav-toggle:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+.nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+/* ========== Hero ========== */
+.hero {
+  padding-top: 5rem;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 2.5vw + 1rem, 3rem);
+}
+.subtitle {
+  font-size: 1.05rem;
+}
+
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--panel);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn.primary {
+  background: var(--primary);
+  border-color: var(--primary-700);
+  color: #fff;
+}
+.btn.primary:hover {
+  background: var(--primary-700);
+}
+.btn.ghost {
+  background: transparent;
+}
+.btn.small {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+/* ========== About ========== */
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  padding-left: 1rem;
+}
+.about-highlights li {
+  color: var(--text);
+}
+
+/* ========== Skills ========== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.skill {
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.skill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.skill-level {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress {
+  --value: 0%;
+  height: 10px;
+  background: #141922;
+  border-radius: 999px;
+  margin: 0.6rem 0 0.4rem;
+  position: relative;
+  overflow: hidden;
+}
+.progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: var(--value);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+.progress[data-value] {
+  --value: attr(data-value percentage);
+}
+
+/* ========== Projects ========== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.project-card {
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.project-title {
+  margin: 0;
+}
+.project-desc {
+  margin: 0;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.2rem 0 0;
+}
+.project-tags li {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+}
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* ========== Contact ========== */
+.contact-form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 640px;
+}
+.form-row {
+  display: grid;
+  gap: 0.3rem;
+}
+label {
+  color: #fff;
+}
+input,
+textarea {
+  width: 100%;
+  background: #0e1219;
+  color: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+}
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.error-msg {
+  color: #ff8383;
+  min-height: 1.2em;
+}
+.form-status {
+  margin-top: 0.4rem;
+}
+
+/* ========== Footer ========== */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  color: var(--muted);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+  .nav-toggle {
+    display: block;
+  }
+  .nav-menu {
+    position: absolute;
+    inset: 56px 1rem auto 1rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .nav-menu.open {
+    display: flex;
+  }
+}
+
+/* ========== Fun touches ========== */
+.nav-link.active {
+  box-shadow: 0 0 0 3px var(--ring) inset;
+}
